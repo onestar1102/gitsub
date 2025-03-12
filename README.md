@@ -49,3 +49,26 @@ bool pattern1(int n, int x, int y) {
   return condition;
 }
 ```
+- 꽉 찬 사각형
+```ruby var result = '';
+void main() {
+  var n = 10;
+
+  for (var y = 0; y < n; y++) {
+    for (var x = 0; x < n; x++) {
+      var c = pattern1(n, x, y);
+      if (c) {
+        result += '=';
+      } else {
+        result += ' ';
+      }
+    }
+    result += '\n';
+  }
+  print(result);
+}
+
+bool pattern1(int n, int x, int y) {
+  return true;
+}
+```
