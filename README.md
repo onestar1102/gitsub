@@ -22,7 +22,8 @@
   }
 ```
 2. 정사각형의 길이를 입력하여 사각형 출력하기
-  - 빈 사각형 ```ruby var result = '';
+  - 빈 사각형
+```ruby var result = '';
 void main() {
   var n = 10;
 
