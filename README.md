@@ -170,10 +170,10 @@ bool pattern1(int n, int x, int y) {
   print(day);
 }
 ```
-###위 내용의 이해를 위해 챗gpt사용함
->> DateTime date= DateTime.parse(input)을 이용해 input값의 날짜와 시간을 객체로 반환
->> List를 이용하여 문자열로 요일 생성
->> List 안의 값은 숫자열로 값을 찾을 수 있기 때문에 0~6으로 저장돼있는것과 같음 ( 숫자열로 접근해야함 )
->> date.weekday변수로 요일을 숫자로 반환한다 이때 date.weekday는 1부터 시작하기때문에 숫자열(index)와 숫자열을 맞춰야한다
->> 그렇기에 -1로 date.weekday의 시작점을 0으로 바꾸어 7을 찾아 에러가 나지 않도록 설정해줌으로써 List안의 값을 정확하게 찾을 수 있게된다
+### 위 내용의 이해를 위해 챗gpt사용함
+>> DateTime date= DateTime.parse(input)을 이용해 input값의 날짜와 시간을 객체로 반환 <br>
+>> List를 이용하여 문자열로 요일 생성 <br> 
+>> List 안의 값은 숫자열로 값을 찾을 수 있기 때문에 0~6으로 저장돼있는것과 같음 ( 숫자열로 접근해야함 ) <br>
+>> date.weekday변수로 요일을 숫자로 반환한다 이때 date.weekday는 1부터 시작하기때문에 숫자열(index)와 숫자열을 맞춰야한다 <br>
+>> 그렇기에 -1로 date.weekday의 시작점을 0으로 바꾸어 7을 찾아 에러가 나지 않도록 설정해줌으로써 List안의 값을 정확하게 찾을 수 있게된다 <br>
 
