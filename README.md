@@ -21,3 +21,30 @@
     }
   }
 ```
+2. 정사각형의 길이를 입력하여 사각형 출력하기
+  - 빈 사각형 ```ruby var result = '';
+void main() {
+  var n = 10;
+
+  for (var y = 0; y < n; y++) {
+    for (var x = 0; x < n; x++) {
+      var c = pattern1(n, x, y);
+      if (c) {
+        result += '=';
+      } else {
+        result += ' ';
+      }
+    }
+    result += '\n';
+  }
+  print(result);
+}
+
+bool pattern1(int n, int x, int y) {
+  var condition = y == 0;
+  condition |= y == (n - 1);
+  condition |= x == 0;
+  condition |= x == (n - 1);
+  return condition;
+}
+```
