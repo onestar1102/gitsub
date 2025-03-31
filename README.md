@@ -192,6 +192,76 @@ bool pattern1(int n, int x, int y) {
 > 해당 객체의 행위(동작)을 나타냄. 자바에는 모든 메서드가 클래스에 존재하기 떄문에 모든 함수는 메서드임.
 3. 객체란
   클래스의 인스턴스나 배열을 말한다고 정의되고, 변수, 함수, 자료 구조의 조
+
+#4주차
+##과제 - 현재 시각을 표시하는 앱 만들기
+ - 상단 앱바 타이틀은 "현재 시각" 이고 정 중앙에 현재 시각을 표시하기(초까지 표시할 것) 시간 갱신은 1초마다 갱신
+   해당 코드
+   ```ruby import 'dart:async'; // 타이머를 사용하기 위한 라이브러리
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // 날짜 및 시간 형식을 위한 라이브러리
+
+void main() {
+  runApp(const MyApp()); // 앱 실행
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false, // 디버그 배너 숨김
+      home: ClockScreen(),
+    );
+  }
+}
+
+class ClockScreen extends StatefulWidget {
+  const ClockScreen({super.key});
+
+  @override
+  _ClockScreenState createState() => _ClockScreenState();
+}
+
+class _ClockScreenState extends State<ClockScreen> {
+  late String _currentTime; // 현재 시간을 저장할 변수
+  late Timer _timer; // 1초마다 갱신할 타이머
+
+  @override
+  void initState() {
+    super.initState();
+    _updateTime(); // 초기 시간 설정
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) => _updateTime()); // 1초마다 시간 갱신
+  }
+
+  void _updateTime() {
+    setState(() {
+      // 현재 날짜 및 시간을 "yyyy-MM-dd a hh:mm:ss" 형식으로 변환
+      _currentTime = DateFormat('yyyy-MM-dd a hh:mm:ss').format(DateTime.now());
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // 화면이 닫힐 때 타이머 해제
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('현재 시각')), // 앱 상단바 제목
+      body: Center(
+        child: Text(
+          _currentTime, // 현재 시각 출력
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+   ```
   
 
 
