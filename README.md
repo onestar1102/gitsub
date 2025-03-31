@@ -197,7 +197,7 @@ bool pattern1(int n, int x, int y) {
 ## 과제 - 현재 시각을 표시하는 앱 만들기
  - 상단 앱바 타이틀은 "현재 시각" 이고 정 중앙에 현재 시각을 표시하기(초까지 표시할 것) 시간 갱신은 1초마다 갱신
    해당 코드
-   ```ruby import 'dart:async'; // 타이머를 사용하기 위한 라이브러리
+```ruby import 'dart:async'; // 타이머를 사용하기 위한 라이브러리
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // 날짜 및 시간 형식을 위한 라이브러리
 
@@ -260,8 +260,7 @@ class _ClockScreenState extends State<ClockScreen> {
       ),
     );
   }
-}
-```
+}```
   
 
 
