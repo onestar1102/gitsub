@@ -363,7 +363,7 @@ class CalculatorButton extends StatelessWidget {
 }
 ```
 2. 도형 채우기 코드
-   ```import 'package:flutter/material.dart';
+```import 'package:flutter/material.dart';
 
 void main() {
   runApp(BlockLayoutApp());
@@ -381,21 +381,21 @@ class BlockLayoutApp extends StatelessWidget {
               flex: 2,
               child: Row(
                 children: [
-                  // 빨강 영역 (왼쪽 50%)
+                  //
                   Expanded(
                     flex: 2,
                     child: Container(color: Colors.red),
                   ),
-                  // 오른쪽 영역 (파랑 + 검정/주황)
+                  //
                   Expanded(
                     flex: 2,
                     child: Column(
                       children: [
-                        // 파랑 (상단 절반)
+                        //
                         Expanded(
                           child: Container(color: Colors.blue),
                         ),
-                        // 검정 + 주황 (하단 절반 가로 분할)
+                        //
                         Expanded(
                           child: Row(
                             children: [
@@ -414,7 +414,7 @@ class BlockLayoutApp extends StatelessWidget {
                 ],
               ),
             ),
-            // 노랑 (아래 60%)
+            //
             Expanded(
               flex: 3,
               child: Container(color: Colors.yellow),
