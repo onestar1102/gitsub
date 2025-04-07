@@ -261,6 +261,171 @@ class _ClockScreenState extends State<ClockScreen> {
     );
   }
 }```
+
+# 5주차
+## 과제 - 계산기 화면 출력 및 사각형 도형만들기
+1. 계산기 코드
+```import 'package:flutter/material.dart';
+
+void main() {
+  runApp(CalculatorApp());
+}
+
+class CalculatorApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: CalculatorUI(),
+    );
+  }
+}
+
+class CalculatorUI extends StatelessWidget {
+  final List<String> buttons = [
+    'AC', '±', '%', '÷',
+    '7', '8', '9', '×',
+    '4', '5', '6', '−',
+    '1', '2', '3', '+',
+    '0', '.', '=', 
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Display Area
+            Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.bottomRight,
+                padding: EdgeInsets.all(24),
+                child: Text(
+                  '0',
+                  style: TextStyle(color: Colors.white, fontSize: 48),
+                ),
+              ),
+            ),
+
+            // Button Grid
+            Expanded(
+              flex: 5,
+              child: Container(
+                padding: EdgeInsets.all(8),
+                child: GridView.builder(
+                  itemCount: buttons.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                  ),
+                  itemBuilder: (context, index) {
+                    return CalculatorButton(label: buttons[index]);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CalculatorButton extends StatelessWidget {
+  final String label;
+
+  const CalculatorButton({required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final isOperator = ['÷', '×', '−', '+', '='].contains(label);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: isOperator ? Colors.blue : Colors.grey[850],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Center(
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 24,
+            color: isOperator ? Colors.white : Colors.white70,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+2. 도형 채우기 코드
+   ```import 'package:flutter/material.dart';
+
+void main() {
+  runApp(BlockLayoutApp());
+}
+
+class BlockLayoutApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Row(
+                children: [
+                  // 빨강 영역 (왼쪽 50%)
+                  Expanded(
+                    flex: 2,
+                    child: Container(color: Colors.red),
+                  ),
+                  // 오른쪽 영역 (파랑 + 검정/주황)
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      children: [
+                        // 파랑 (상단 절반)
+                        Expanded(
+                          child: Container(color: Colors.blue),
+                        ),
+                        // 검정 + 주황 (하단 절반 가로 분할)
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(color: Colors.black),
+                              ),
+                              Expanded(
+                                child: Container(color: Colors.orange),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // 노랑 (아래 60%)
+            Expanded(
+              flex: 3,
+              child: Container(color: Colors.yellow),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
   
 
 
