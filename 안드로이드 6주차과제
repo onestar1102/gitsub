@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: FirstScreen(),
+  ));
+}
+
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('첫 번째 화면')),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('다음 화면으로 이동'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondScreen()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SecondScreen extends StatefulWidget {
+  @override
+  _SecondScreenState createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  @override
+  void initState() {
+    super.initState();
+    print('SecondScreen - initState() 호출됨');
+  }
+
+  @override
+  void dispose() {
+    print('SecondScreen - dispose() 호출됨');
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('SecondScreen - build() 호출됨');
+    return Scaffold(
+      appBar: AppBar(title: Text('두 번째 화면')),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('뒤로 가기'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+}
