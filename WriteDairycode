@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+class WriteDiaryScreen extends StatefulWidget{ //StatefulWidget 사용 이유 : 변경되는 데이터가 있을때 사용
+  const WriteDiaryScreen({super.key});
+
+  @override
+  _WriteDiaryScreenState createState() => _WriteDiaryScreenState();
+}
+
+class _WriteDiaryScreenState extends State<WriteDiaryScreen>{
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _tagController = TextEditingController();
+
+  void _saveDiary(){
+  //   파이어베이스 저장가능
+    print('제목: ${_titleController.text}');
+    print('내용: ${_contentController.text}');
+    print('태그: ${_tagController.text}');
+
+    //화면 닫고 DiaryScreen으로 이동
+    Navigator.pop(context);
+  }
+  //일기 작성 화면 코드
+  @override
+  Widget build(BuildContext context){
+    //Scaffold << 기본 화면 구성 틀
+    return Scaffold(
+      appBar: AppBar(title: const Text('새 일기 작성')),
+      body: Padding(padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          TextField(controller: _titleController, decoration:   const InputDecoration(labelText: '제목')), const SizedBox(height: 8),
+          TextField(controller: _contentController, decoration:   const InputDecoration(labelText: '내용')), const SizedBox(height: 8),
+          TextField(controller: _tagController, decoration:   const InputDecoration(labelText: '태그')), const SizedBox(height: 16),
+        ElevatedButton(onPressed: _saveDiary, child: const Text('저장'),
+          )
+        ],
+      ),
+    ),
+    );
+  }
+}
