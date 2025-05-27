@@ -1,0 +1,169 @@
+import 'package:flutter/material.dart';
+import 'WriteDiaryScreen.dart';
+import 'HomeScreen.dart';
+
+
+void main(){
+  runApp(const MyApp()); /* 앱 실행 */
+}
+class MyApp extends StatelessWidget{ //MyApp 클래스 - 앱 전체 설정
+  const MyApp({super.key});
+  //super.key << 부모 클래스의 키 전달 역할
+@override
+Widget build(BuildContext context){
+  return MaterialApp( //앱의 기본 테마 및 네비게이션 설정
+    title: '내 일기장',
+    debugShowCheckedModeBanner: false, //디버그 배너 제거
+    theme: ThemeData(primarySwatch: Colors.blue,
+    ), home: const DiaryScreen(), // DiaryScreen을 앱 시작시 첫 화면으로 설정
+  );
+}
+}
+
+// DiaryScreen 화면
+class DiaryScreen extends StatefulWidget { //StatefulWidget을 이용해 데이터가 변경될 수 있는 화면으로 구성
+  const DiaryScreen({super.key});
+
+  @override
+  _DiaryScreenState createState() => _DiaryScreenState();
+  //CreateState를 이용해 화면의 상태를 관리하는 클래스 생성 -> _DiarySreenState(다이어리 화면 상태)
+}
+
+class _DiaryScreenState extends State<DiaryScreen> {
+  List<Map<String, dynamic>> diaries = [];
+
+
+  /*initState는 화면이 처음 실행될 때 호출
+  * DiaryScreen에서 데이터 불러오는것
+  * _loadDiaries로 로컬에서 데이터 가져옴
+  * */
+  @override
+  void initState() {
+    super.initState();
+    _loadDiaries();
+  }
+
+  void _loadDiaries() async {
+    try {
+      // Firebase에서 데이터 가져오기 (연결 여부 확인)
+      // 여기에 Firebase 코드가 들어갈 수 있음.
+
+      throw Exception('Firebase 연결 실패'); // 테스트용 에러 처리 (Firebase 연결 실패 가정)
+    } catch (e) {
+      // Firebase 연결이 실패하면 로컬 더미 데이터 사용
+      setState(() {
+        diaries = [
+          {
+            'title': '첫 번째 일기',
+            'content': '오늘은 정말 좋은 날이었어!',
+            'timestamp': DateTime.now(),
+          },
+          {
+            'title': '두 번째 일기',
+            'content': '비가 왔지만 마음은 맑음.',
+            'timestamp': DateTime.now().subtract(const Duration(days: 1)),
+          },
+          {
+            'title': '세 번째 일기',
+            'content': '운동 후 기분 최고!',
+            'timestamp': DateTime.now().subtract(const Duration(days: 2)),
+          },
+        ];
+      });
+    }
+  }
+
+  //AppBar 와 일기 작성 + 버튼
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        //뒤로가기 버튼 추가
+        leading: IconButton(icon: const Icon(Icons.arrow_back), //뒤로가기 버튼
+        onPressed: (){ //클릭시 기능 HomeScreen은 이후 추가
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> const HomeScreen()),
+              (route) => false,
+          );
+        },
+        ),
+        title: const Text('일기장'),
+        centerTitle: true, //중앙 정렬 유지
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  //일기 작성 +버튼 클릭 시 WriteDiaryScreen화면으로 이동
+                  builder: (context) => const WriteDiaryScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      //Row를 이용해 왼쪽에 메뉴 Text이미지 생성후 표시
+      //ListView.builder를 이용해 여러개를 동적으로 표시
+
+      body: Row(
+        children: [
+          Container(
+            width: 120,
+            color: Colors.lightBlue[100],
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [ //왼쪽에 들어가는 이미지 및 text
+                Text('📅 캘린더'),
+                SizedBox(height: 12),
+                Text('📜 타임라인'),
+                SizedBox(height: 12),
+                Text('📷 사진첩'),
+                SizedBox(height: 12),
+                Text('💌 guestbook'),
+              ],
+            ),
+          ),
+          const VerticalDivider(width: 1),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ListView.builder(
+                itemCount: diaries.length, // 저장된 일기 후
+                itemBuilder: (context, index) {
+                  final data = diaries[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    elevation: 2,
+                    child: ListTile(
+                      title: Text(
+                        data['title'] ?? '제목 없음',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data['content'] ?? '내용 없음',
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 4),
+                          Text('📅 ${data['timestamp'].toLocal()}'),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
