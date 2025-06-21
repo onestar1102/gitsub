@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "968889452217",
+    "project_id": "wepapphomepage",
+    "storage_bucket": "wepapphomepage.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968889452217:android:91562bbccf1eb7732bfd68",
+        "android_client_info": {
+          "package_name": "com.example.blogstar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968889452217-qlp7o31ogmnjn3kl2cu96rtvq2q0bnir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM7r57RZuwfFTX8ITcG3XBaGAB3qh8D-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968889452217-23cs71kiacpivdn73cfeicqtshvb4g62.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "968889452217-heh17do3500tjili0s7dcemlt8t0s9r9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.blogstar",
+                "app_store_id": "12345678"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968889452217:android:e296c8faee65f9b62bfd68",
+        "android_client_info": {
+          "package_name": "com.example.my_homepage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968889452217-qlp7o31ogmnjn3kl2cu96rtvq2q0bnir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM7r57RZuwfFTX8ITcG3XBaGAB3qh8D-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968889452217-23cs71kiacpivdn73cfeicqtshvb4g62.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "968889452217-heh17do3500tjili0s7dcemlt8t0s9r9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.blogstar",
+                "app_store_id": "12345678"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
