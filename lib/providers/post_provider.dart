@@ -45,6 +45,12 @@ class PostProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+  // lib/providers/post_provider.dart  (추가-수정) 삭제 기능 추가
+  Future<void> deletePost(Post post) async {
+    await _col.doc(post.id).delete();      // Firestore
+    posts.removeWhere((e) => e.id == post.id);
+    notifyListeners();
+  }
 
   // ───────── 새 게시글 추가 ─────────
   Future<void> addPost(
